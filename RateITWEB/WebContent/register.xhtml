@@ -5,31 +5,30 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:body>
 	<h:form>
-		<h:outputLabel for="username" value="Username: " />
+		<h:outputLabel for="username" value="Username *: " />
 		<h:inputText id="username" type="email"
 			value="#{registerController.user.username}" required="true"
 			requiredMessage="Please enter a username">
 		</h:inputText>
 
-		<h:outputLabel for="password" value="Passwort: " />
+		<h:outputLabel for="password" value="Passwort *: " />
 		<h:inputSecret id="password" type="password"
 			value="#{registerController.user.password}" required="true"
 			requiredMessage="Please enter a password">
 		</h:inputSecret>
 		
-		<h:outputLabel for="name" value="Name " />
+		<h:outputLabel for="name" value="Name:" />
 		<h:inputText id="name" type="text"
-			value="#{registerController.user.name}" required="true"
-			requiredMessage="Please enter your name">
+			value="#{registerController.user.name}" required="false">
 		</h:inputText>
 		
-		<h:outputLabel for="surname" value="Surname " />
+		<h:outputLabel for="surname" value="Surname:" />
 		<h:inputText id="surname" type="text"
-			value="#{registerController.user.surname}" required="true"
-			requiredMessage="Please enter your surname">
+			value="#{registerController.user.surname}" required="false">
 		</h:inputText>
 
 		<h:message for="password" style="color: red;" />
+		<h:message for="username" style="color: red;" />
 
 		<h:commandButton action="#{registerController.save()}"
 			value="Registrieren" />

@@ -5,18 +5,19 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:body>
 	<h:form>
-		<h:outputLabel for="email" value="E-mail: " />
-		<h:inputText id="email" type="email"
-			value="#{registerController.customer.email}" required="true"
-			requiredMessage="Bitte E-Mail eingeben">
+		<h:outputLabel for="username" value="Username: " />
+		<h:inputText id="username" type="email"
+			value="#{registerController.user.username}" required="true"
+			requiredMessage="Please enter your username">
 		</h:inputText>
 
 		<h:outputLabel for="password" value="Passwort: " />
 		<h:inputSecret id="password" type="password"
-			value="#{registerController.customer.password}" required="true"
+			value="#{registerController.user.password}" required="true"
 			requiredMessage="Bitte Passwort eingeben">
 		</h:inputSecret>
 
+		<h:message for="username" style="color: red;" />
 		<h:message for="password" style="color: red;" />
 
 		<h:commandButton action="#{registerController.login()}"

@@ -38,7 +38,7 @@ public class RegisterBean implements RegisterBeanLocal {
 	@Override
 	public String login(User user) {
 		try {
-			if (em.createNamedQuery("User.findByEmailAndPassword").setParameter("userName", user.getUsername())
+			if (em.createNamedQuery("User.findByUsernameAndPassword").setParameter("userName", user.getUsername())
 					.setParameter("userPW", user.getPassword()).getResultList().size() > 0) {
 				LOGGER.info("User " + user.getUsername() + " successfully logged in.");
 			} else
