@@ -1,0 +1,38 @@
+<?xml-stylesheet href="style.css" type="text/css"?>
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:body>
+	<h:form>
+		<h:outputLabel for="username" value="Username: " />
+		<h:inputText id="username" type="email"
+			value="#{registerController.user.username}" required="true"
+			requiredMessage="Please enter a username">
+		</h:inputText>
+
+		<h:outputLabel for="password" value="Passwort: " />
+		<h:inputSecret id="password" type="password"
+			value="#{registerController.user.password}" required="true"
+			requiredMessage="Please enter a password">
+		</h:inputSecret>
+		
+		<h:outputLabel for="name" value="Name " />
+		<h:inputText id="name" type="text"
+			value="#{registerController.user.name}" required="true"
+			requiredMessage="Please enter your name">
+		</h:inputText>
+		
+		<h:outputLabel for="surname" value="Surname " />
+		<h:inputText id="surname" type="text"
+			value="#{registerController.user.surname}" required="true"
+			requiredMessage="Please enter your surname">
+		</h:inputText>
+
+		<h:message for="password" style="color: red;" />
+
+		<h:commandButton action="#{registerController.save()}"
+			value="Registrieren" />
+	</h:form>
+</h:body>
+</h:html>
