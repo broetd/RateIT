@@ -1,4 +1,4 @@
-package ch.bbc.rateit.model;
+ package ch.bbc.rateit.model;
 
 import java.io.Serializable;
 
