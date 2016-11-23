@@ -1,27 +1,40 @@
-<?xml-stylesheet href="style.css" type="text/css"?>
-<h:html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html">
-<h:body>
-	<h:form>
-		<h:outputLabel for="username" value="Username: " />
-		<h:inputText id="username" type="email"
-			value="#{registerController.user.username}" required="true"
-			requiredMessage="Please enter your username">
-		</h:inputText>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Sign In Template for BootsFaces</title>
+        <style type="text/css">
+            .form-signin {
+                margin: 0 auto;
+                max-width: 330px;
+                padding: 15px;
+            }
+        </style>
+    </h:head>
+    <h:body style="padding-top: 60px; background-color: #add;">
+        <b:container>
+            <h:form styleClass="form-signin" prependId="false">
+                <h2 class="form-signin-heading">Please sign in</h2>
+                <h:outputLabel for="username" value="Username" />
+                <b:inputText id="username" placeholder="Username" value="#{registerController.user.username}" >
+                    <f:facet name="prepend">
+                        <b:icon name="user" />
+                    </f:facet>
+                </b:inputText>
+                <h:outputLabel for="password" value="Password"/>
+                <b:inputText id="password" placeholder="Password" type="password" value="#{registerController.user.password}">
+                    <f:facet name="prepend">
+                        <b:iconAwesome name="key" />
+                    </f:facet>
+                </b:inputText>
+                <b:commandButton look="primary btn-block" action="#{registerController.login()}" value="Login" icon="log-in" size="lg"/>
+                <b:commandButton look="primary btn-block" value="Register" action="register.xhtml" icon="pencil" size="lg"/>
 
-		<h:outputLabel for="password" value="Passwort: " />
-		<h:inputSecret id="password" type="password"
-			value="#{registerController.user.password}" required="true"
-			requiredMessage="Bitte Passwort eingeben">
-		</h:inputSecret>
-
-		<h:message for="username" style="color: red;" />
-		<h:message for="password" style="color: red;" />
-
-		<h:commandButton action="#{registerController.login()}"
-			value="Einloggen" />
-	</h:form>
-</h:body>
-</h:html>
+            </h:form>
+        </b:container>
+    </h:body>
+</html>

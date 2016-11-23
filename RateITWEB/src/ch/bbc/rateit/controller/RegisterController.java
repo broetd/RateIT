@@ -4,15 +4,17 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 import ch.bbc.rateit.model.User;
 import ch.bbcag.RateITEJB.RegisterBeanLocal;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class RegisterController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -27,9 +29,21 @@ public class RegisterController implements Serializable {
 		registerBean.save(user);
 		return "";
 	}
+	private boolean userLoggedIn;
+
+	public void logout() {
+		setUserLoggedIn(false);
+	   ((HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false)).invalidate();
+	}
 
 	public String login() {
-		registerBean.login(user);
+		if (registerBean.login(user) == true) {
+			//TODO fill local user variable with database shit
+			user.setUsername(user.getUsername());
+			userLoggedIn = true;
+		}else{
+			userLoggedIn = false;
+		}
 		return "";
 	}
 	
@@ -44,5 +58,17 @@ public class RegisterController implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public String openRegister(){
+		return "register.xhtml";
+	}
+	
+	public boolean isUserLoggedIn() {
+		return userLoggedIn;
+	}
+
+	public void setUserLoggedIn(boolean isLoggedIn) {
+		this.userLoggedIn = isLoggedIn;
 	}
 }

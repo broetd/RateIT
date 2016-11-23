@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+
+	<b:navBar brand="RateIT" brandHref="index.jsf">
+		<b:navbarLinks>
+			<b:navLink value="Home" href="index.jsf"></b:navLink>
+			<b:navLink value="Upload" href="#"></b:navLink>
+
+		</b:navbarLinks>
+		<form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs"
+			role="search">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search" />
+			</div>
+			<button type="submit" class="btn btn-default">Submit</button>
+		</form>
+		<!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
+		<b:navbarLinks pull="right">
+			<b:navLink value="    " href="#"></b:navLink>
+		</b:navbarLinks>
+		<b:navbarLinks rendered="#{not registerController.userLoggedIn}"
+			pull="right" styleClass="hidden-xs">
+			<b:dropMenu value="Login" class="loginMenu">
+				<h:form>
+					<h:outputLabel class="username" for="username" value="Username" />
+					<b:inputText id="username" placeholder="Username"
+						class="usernameInput" value="#{registerController.user.username}">
+						<!-- <f:facet class="icon" name="prepend">
+							<b:icon name="user" class="icon"/>
+						</f:facet> -->
+					</b:inputText>
+					<h:outputLabel class="password" for="password" value="Password" />
+					<b:inputText id="password" placeholder="Password" type="password"
+						class="passwordInput" value="#{registerController.user.password}">
+						<!-- <f:facet class="icon" name="prepend">
+ 							<b:iconAwesome name="key" class="icon" />
+ 						</f:facet> -->
+					</b:inputText>
+					<b:commandButton value="Login"
+						action="#{registerController.login()}" icon="log-in"
+						class="loginButton" look="primary btn-block" size="lg" />
+					<b:commandButton value="Register" action="register.xhtml"
+						icon="pencil" class="registerButton" />
+				</h:form>
+			</b:dropMenu>
+		</b:navbarLinks>
+		<b:navbarLinks rendered="#{registerController.userLoggedIn}"
+			pull="right" styleClass="hidden-xs">
+			<b:dropMenu value="#{registerController.user.getUsername()}"
+				class="Logout">
+				<h:form>
+					<b:commandButton value="Your Profile" action="#" icon="user"
+						class="profileButton" look="primary btn-block" size="lg" />
+					<b:commandButton value="Logout"
+						action="#{registerController.logout()}" icon="log-out"
+						class="logoutButton" look="primary btn-block" size="lg" />
+				</h:form>
+			</b:dropMenu>
+		</b:navbarLinks>
+	</b:navBar>
+</h:body>
+</html>

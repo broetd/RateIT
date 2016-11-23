@@ -7,6 +7,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.sun.xml.ws.runtime.dev.Session;
+
 import ch.bbc.rateit.model.User;
 
 @Stateless
@@ -26,28 +28,32 @@ public class RegisterBean implements RegisterBeanLocal {
 
 	@Override
 	public String save(User user) {
+		
 		try {
 			em.persist(user);
 		} catch (Exception e) {
-			LOGGER.warning("Customer could not be registered: " + e);
+			LOGGER.warning("User could not be registered: " + e);
 		}
-		LOGGER.info("Customer " + user.getUsername() + " has been registered.");
+		LOGGER.info("User " + user.getUsername() + " has been registered.");
 		return "";
 	}
 
 	@Override
-	public String login(User user) {
+	public boolean login(User user) {
 		try {
 			if (em.createNamedQuery("User.findByUsernameAndPassword").setParameter("userName", user.getUsername())
 					.setParameter("userPW", user.getPassword()).getResultList().size() > 0) {
 				LOGGER.info("User " + user.getUsername() + " successfully logged in.");
+				return true;
 			} else
 				LOGGER.info("Username or password incorrect.");
+			return false;
 		} catch (Exception e) {
 			LOGGER.warning("User could not be logged in: " + e);
+			return false;
 		}
-		return "";
 	}
+	
 	
 	@SuppressWarnings("unchecked")
 	@Override

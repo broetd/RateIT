@@ -3,7 +3,7 @@
 	<name>RateITWEB</name>
 	<comment></comment>
 	<projects>
-		<project>GameXChangeEJB</project>
+		<project>RateITEJB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

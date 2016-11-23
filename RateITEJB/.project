@@ -3,7 +3,7 @@
 	<name>RateITEJB</name>
 	<comment></comment>
 	<projects>
-		<project>GameXChangeJPA</project>
+		<project>RateITJPA</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
