@@ -19,8 +19,6 @@ public class Post implements Serializable {
 
 	private float rating;
 
-	private String foto;
-
 	public Post() {
 		
 	}
@@ -47,14 +45,6 @@ public class Post implements Serializable {
 
 	public void setRating(float rating) {
 		this.rating = rating;
-	}
-
-	public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
 	}
 
 }

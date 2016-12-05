@@ -2,18 +2,26 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 	<h:body>
-
-
-		hoi
-
-
-
+		<ui:insert name="header">
+			<ui:include src="header.xhtml" />
+		</ui:insert>
+		
+		
+		
+		<h:form class="login-form">
+             <p:fileUpload
+             fileUploadListener="#{uploadController.handleFileUpload}"
+             mode="advanced" dragDropSupport="true" 
+             sizeLimit="10000000000000"
+             allowTypes="/(\.|\/)(jpe?g|png)$/"/> 
+       </h:form>		
 
 	</h:body>
 </html>
