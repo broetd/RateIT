@@ -1,9 +1,13 @@
 .loginMenu {
-	width: 300px !important;
+	width: 240px !important;
+}
+
+.logoutMenu {
+	width: 240px !important;
 }
 
 .passwordInput {
-	margin-left: 20px !important; 
+	margin-left: 20px !important;
 	margin-right: 20px !important;
 	width: 200px !important;
 }
@@ -13,11 +17,6 @@
 	margin-right: 20px !important;
 	width: 200px !important;
 }
-/* 
-.icon {
-	margin-left: 20px;
-	padding-left:20px;
-} */
 
 .username {
 	margin-left: 20px;
@@ -25,4 +24,30 @@
 
 .password {
 	margin-left: 20px;
+}
+
+.profileButton {
+	width: 200px !important;
+	margin-left: 20px;
+	margin-bottom: 10px;
+	margin-right: 20px;
+}
+
+.logoutButton {
+	width: 200px !important;
+	margin-left: 20px;
+	margin-top: 10px;
+	margin-right: 20px;
+}
+
+.loginButton {
+	width: 150px !important;
+	margin-left: 25px;
+	margin-bottom: 10px;
+}
+
+.registerButton {
+	width: 100px !important;
+	margin-left: 25px;
+	margin-top: 10px;
 }

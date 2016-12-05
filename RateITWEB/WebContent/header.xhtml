@@ -34,16 +34,16 @@
 					<h:outputLabel class="username" for="username" value="Username" />
 					<b:inputText id="username" placeholder="Username"
 						class="usernameInput" value="#{registerController.user.username}">
-						<!-- <f:facet class="icon" name="prepend">
-							<b:icon name="user" class="icon"/>
+						<!-- <f:facet class="fuckenfag" name="prepend">
+							<b:icon name="user"/>
 						</f:facet> -->
 					</b:inputText>
 					<h:outputLabel class="password" for="password" value="Password" />
 					<b:inputText id="password" placeholder="Password" type="password"
 						class="passwordInput" value="#{registerController.user.password}">
-						<!-- <f:facet class="icon" name="prepend">
- 							<b:iconAwesome name="key" class="icon" />
- 						</f:facet> -->
+						<!-- <f:facet class="fuckenfag" name="prepend">
+ 							<b:iconAwesome name="key" />
+ 						</f:facet>  -->
 					</b:inputText>
 					<b:commandButton value="Login"
 						action="#{registerController.login()}" icon="log-in"
@@ -56,7 +56,7 @@
 		<b:navbarLinks rendered="#{registerController.userLoggedIn}"
 			pull="right" styleClass="hidden-xs">
 			<b:dropMenu value="#{registerController.user.getUsername()}"
-				class="Logout">
+				class="logoutMenu">
 				<h:form>
 					<b:commandButton value="Your Profile" action="#" icon="user"
 						class="profileButton" look="primary btn-block" size="lg" />

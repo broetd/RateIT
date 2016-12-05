@@ -24,12 +24,14 @@ public class RegisterController implements Serializable {
 	
 	@Inject
 	private User user;
+	
+	private boolean userLoggedIn;
 
 	public String save() {
 		registerBean.save(user);
 		return "";
 	}
-	private boolean userLoggedIn;
+	
 
 	public void logout() {
 		setUserLoggedIn(false);
@@ -38,7 +40,6 @@ public class RegisterController implements Serializable {
 
 	public String login() {
 		if (registerBean.login(user) == true) {
-			//TODO fill local user variable with database shit
 			user.setUsername(user.getUsername());
 			userLoggedIn = true;
 		}else{
@@ -58,10 +59,6 @@ public class RegisterController implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-	
-	public String openRegister(){
-		return "register.xhtml";
 	}
 	
 	public boolean isUserLoggedIn() {
