@@ -8,20 +8,31 @@
 <h:head>
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
-	<h:body>
-		<ui:insert name="header">
-			<ui:include src="header.xhtml" />
-		</ui:insert>
-		
-		
-		
-		<h:form class="login-form">
-             <p:fileUpload
-             fileUploadListener="#{uploadController.handleFileUpload}"
-             mode="advanced" dragDropSupport="true" 
-             sizeLimit="10000000000000"
-             allowTypes="/(\.|\/)(jpe?g|png)$/"/> 
-       </h:form>		
+<h:body>
+	<ui:insert name="header">
+		<ui:include src="header.xhtml" />
+	</ui:insert>
 
-	</h:body>
+	<h:form class="login-form">
+
+		<b:inputText id="Titel" required="true" placeholder="Titel"
+			value="#{uploadController.post.titel}"
+			requiredMessage="Please enter a title"></b:inputText>
+			
+		<b:inputText id="Text" required="true" placeholder="Description (max 300 characters)"
+			value="#{uploadController.post.text}"
+			requiredMessage="Please enter a titel"></b:inputText>
+			
+			 <b:commandButton look="primary btn-block" action="#{uploadController.createPost()}" value="Post" icon="pencil" size="lg"/>
+			
+
+		<p:fileUpload
+			fileUploadListener="#{uploadController.handleFileUpload}"
+			mode="advanced" dragDropSupport="true" sizeLimit="10000000000000"
+			allowTypes="/(\.|\/)(jpe?g|png)$/" />
+
+
+	</h:form>
+
+</h:body>
 </html>

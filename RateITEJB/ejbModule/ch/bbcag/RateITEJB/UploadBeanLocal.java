@@ -7,7 +7,8 @@ import ch.bbc.rateit.model.Post;
 @Local
 public interface UploadBeanLocal {
 	
-	public String createPost(Post p);
+	public String createPost(Post post);
+	 
 	
 
 }

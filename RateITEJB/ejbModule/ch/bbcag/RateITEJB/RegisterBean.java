@@ -7,8 +7,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.sun.xml.ws.runtime.dev.Session;
-
 import ch.bbc.rateit.model.User;
 
 @Stateless

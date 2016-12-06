@@ -25,14 +25,13 @@ public class RegisterController implements Serializable {
 	@Inject
 	private User user;
 	
-	private boolean userLoggedIn;
+	private boolean userLoggedIn = false;
 
 	public String save() {
 		registerBean.save(user);
 		return "";
 	}
 	
-
 	public void logout() {
 		setUserLoggedIn(false);
 	   ((HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false)).invalidate();
