@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import ch.bbc.rateit.model.Post;
-import ch.bbc.rateit.model.User;
 
 @Stateless
 public class UploadBean implements UploadBeanLocal {
@@ -16,7 +15,7 @@ public class UploadBean implements UploadBeanLocal {
 
 	@PersistenceContext
 	EntityManager em;
-
+	
 	/**
 	 * Default constructor.
 	 */
@@ -26,14 +25,12 @@ public class UploadBean implements UploadBeanLocal {
 
 	@Override
 	public String createPost(Post post) {
-	
-		User user = new User();
 		try {
 			em.persist(post);
 		} catch (Exception e) {
 			LOGGER.warning("User could not be registered: " + e);
 		}
-		LOGGER.info("User " + user.getUsername() + " has posted.");
+		LOGGER.info("User " + post.getAuthor() + " has posted.");
 		return "";
 	}
 }

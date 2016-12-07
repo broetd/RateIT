@@ -1,57 +1,69 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-    <h:head>
-        <title>RateIT</title>
-        <style type="text/css">
-            .form-signin {
-                margin: 0 auto;
-                max-width: 330px;
-                padding: 15px;
-            }
-        </style>
-    </h:head>
-    <h:body style="padding-top: 60px">
-        <b:container>
-            <h:form styleClass="form-signin" prependId="false">
-                <h2 class="form-signin-heading">Register</h2>
-                <h:outputLabel for="username" value="Username"/>
-                <h:outputLabel for="required" value="*" style="color: red;"/>
-                <b:inputText id="username" required="true" placeholder="Username" value="#{registerController.user.username}" requiredMessage="Please enter a username">
-                    <f:facet name="prepend">
-                        <b:icon name="user"/>
-                    </f:facet>
-                </b:inputText>
-                <h:outputLabel for="name" value="Name" />
-                <b:inputText id="name" required="false" placeholder="Name" value="#{registerController.user.name}" >
-                    <f:facet name="prepend">
-                        <b:icon name="glyphicon-tag" />
-                    </f:facet>
-                </b:inputText>
-                <h:outputLabel for="surname" value="Surname" />
-                <b:inputText id="surname" required="false" placeholder="Surname" value="#{registerController.user.surname}" >
-                    <f:facet name="prepend">
-                        <b:icon name="glyphicon-tags" />
-                    </f:facet>
-                </b:inputText>
-                <h:outputLabel for="password" value="Password"/>
-                <h:outputLabel for="required" value="*" style="color: red;"/>
-                <b:inputText id="password" required="true" placeholder="Password" type="password" value="#{registerController.user.password}" requiredMessage="Please enter a password">
-                    <f:facet name="prepend">
-                        <b:iconAwesome name="key" />
-                    </f:facet>
-                </b:inputText>
-                <h:message for="password" style="color: red;" /> <br/>
-				<h:message for="username" style="color: red;" />  
-                
-                <b:commandButton look="primary btn-block" action="index.xhtml" value="Register" icon="pencil" size="lg">
-                	<f:actionListener binding="#{registerController.save()}"/>
-                </b:commandButton>
-            </h:form>
-        </b:container>
-    </h:body>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+
+	<title>RateIT</title>
+	<style type="text/css">
+.form-signin {
+	margin: 0 auto;
+	max-width: 330px;
+	padding: 15px;
+}
+</style>
+</h:head>
+<h:body>
+	<ui:insert name="header">
+		<ui:include src="header.xhtml" />
+	</ui:insert>
+	<b:container>
+		<h:form styleClass="form-signin" prependId="false">
+			<h2 class="form-signin-heading">Register</h2>
+			<h:outputLabel for="username" value="Username" />
+			<h:outputLabel for="required" value="*" style="color: red;" />
+			<b:inputText id="username" required="true" placeholder="Username"
+				value="#{registerController.user.username}"
+				requiredMessage="Please enter a username">
+				<f:facet name="prepend">
+					<b:icon name="user" />
+				</f:facet>
+			</b:inputText>
+			<h:outputLabel for="name" value="Name" />
+			<b:inputText id="name" required="false" placeholder="Name"
+				value="#{registerController.user.name}">
+				<f:facet name="prepend">
+					<b:icon name="glyphicon-tag" />
+				</f:facet>
+			</b:inputText>
+			<h:outputLabel for="surname" value="Surname" />
+			<b:inputText id="surname" required="false" placeholder="Surname"
+				value="#{registerController.user.surname}">
+				<f:facet name="prepend">
+					<b:icon name="glyphicon-tags" />
+				</f:facet>
+			</b:inputText>
+			<h:outputLabel for="password" value="Password" />
+			<h:outputLabel for="required" value="*" style="color: red;" />
+			<b:inputText id="password" required="true" placeholder="Password"
+				type="password" value="#{registerController.user.password}"
+				requiredMessage="Please enter a password">
+				<f:facet name="prepend">
+					<b:iconAwesome name="key" />
+				</f:facet>
+			</b:inputText>
+			<h:message for="password" style="color: red;" />
+			<br />
+			<h:message for="username" style="color: red;" />
+
+			<b:commandButton look="primary btn-block" action="index.xhtml"
+				value="Register" icon="pencil" size="lg">
+				<f:actionListener binding="#{registerController.save()}" />
+			</b:commandButton>
+		</h:form>
+	</b:container>
+</h:body>
 </html>

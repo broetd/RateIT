@@ -8,31 +8,33 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.event.FileUploadEvent;
 
-import com.sun.media.jfxmedia.logging.Logger;
-
 import ch.bbc.rateit.model.Post;
-import ch.bbc.rateit.model.User;
 import ch.bbcag.RateITEJB.UploadBeanLocal;
 
-
 @Named
+@SessionScoped
 public class UploadController implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@EJB
 	private UploadBeanLocal uploadBean;
 
 	@Inject
 	private Post post;
-	
-	User user = new User();
 
+	@Inject
+	private RegisterController registerController;
+
+	private boolean imageUploaded = false;
 
 	public Post getPost() {
 		return post;
@@ -41,32 +43,51 @@ public class UploadController implements Serializable {
 	public void setPost(Post post) {
 		this.post = post;
 	}
-	
+
 	public String createPost() {
-		
-//		RegisterController registerController = new RegisterController();
-		
-//		if(registerController.isUserLoggedIn == true()) {
-			uploadBean.createPost(post);
+		if (isImageUploaded() == true) {
+			getPost().setAuthor(registerController.getUser().getUsername());
+			uploadBean.createPost(getPost());
 			return "";
-//		} else {
-//			LOGGER.warning("User not logged in!");
+		} else {
+			FacesContext saveContext = FacesContext.getCurrentInstance();
+		     saveContext.addMessage(null, new FacesMessage("Could not create Post. Please upload a picture."));
 		}
-		
+		return ""; 
+	}
 	
+	public int countFilesInDirectory() {
+	            File f = new File("D:\\Users\\zsoedj\\workspace\\RateITWEB\\WebContent\\img\\post");
+	            int count = 1; 
+	            for (File file : f.listFiles()) {
+	                    if (file.isFile()) {
+	                            count++;
+	                    }
+	            }
+	          
+				return count++;
+	    
+	}
 
+	public String handleFileUpload(FileUploadEvent event) {
+		try {
+			InputStream inputStream = event.getFile().getInputstream();
+			File uploads = new File("D:\\Users\\zsoedj\\workspace\\RateITWEB\\WebContent\\img\\post");
+			File file = new File(uploads, countFilesInDirectory() + ".png");
+			setImageUploaded(true);
+			Files.copy(inputStream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
+	}
 
-	public void handleFileUpload(FileUploadEvent event) {
-        try {
-               InputStream inputStream = event.getFile().getInputstream();
-               File uploads = new File("D:\\Users\\zsoedj\\workspace\\RateITWEB\\WebContent\\img\\post");
-               File file = new File(uploads, post.getTitel() + ".png");
+	public boolean isImageUploaded() {
+		return imageUploaded;
+	}
 
-               Files.copy(inputStream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-               // TODO Auto-generated catch block
-               e.printStackTrace();
-        }
-		
+	public void setImageUploaded(boolean imageUploaded) {
+		this.imageUploaded = imageUploaded;
 	}
 }

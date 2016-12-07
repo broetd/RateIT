@@ -15,24 +15,49 @@
 
 	<h:form class="login-form">
 
+		<h:outputLabel for="required" value="*" style="color: red;" />
 		<b:inputText id="Titel" required="true" placeholder="Titel"
 			value="#{uploadController.post.titel}"
 			requiredMessage="Please enter a title"></b:inputText>
-			
-		<b:inputText id="Text" required="true" placeholder="Description (max 300 characters)"
-			value="#{uploadController.post.text}"
-			requiredMessage="Please enter a titel"></b:inputText>
-			
-			 <b:commandButton look="primary btn-block" action="#{uploadController.createPost()}" value="Post" icon="pencil" size="lg"/>
-			
 
-		<p:fileUpload
+		<h:outputLabel for="required" value="*" style="color: red;" />
+		<b:inputText id="Text" required="true"
+			placeholder="Description (max 300 characters)"
+			value="#{uploadController.post.text}"
+			requiredMessage="Please enter a description"></b:inputText>
+
+
+
+		<p:fileUpload id="Upload"
 			fileUploadListener="#{uploadController.handleFileUpload}"
 			mode="advanced" dragDropSupport="true" sizeLimit="10000000000000"
+			required="true" requiredMessage="Please upload a picture"
 			allowTypes="/(\.|\/)(jpe?g|png)$/" />
+
+		<h:message for="Titel" style="color: red;" />
+		<br />
+		<h:message for="Text" style="color: red;" />
+		<br />
+
+		<b:commandButton look="primary btn-block" execute="@form"
+			action="index.xhtml" value="Post" icon="pencil" size="lg">
+			<f:actionListener binding="#{uploadController.createPost()}" />
+		</b:commandButton>
+		<!-- rendered="#{uploadController.imageUploaded}" -->
 
 
 	</h:form>
+
+	<!-- 	<b:modal rendered="#{not uploadController.imageUploaded}" id="amodal" title="Modal Example"
+		styleClass="modalPseudoClass">
+		<p>Modal body</p>
+		<f:facet name="footer">
+			<b:button value="close" dismiss="modal" onclick="return false;" />
+			<b:button value="Ok" look="primary" dismiss="modal"
+				onclick="return false;" />
+		</f:facet>
+	</b:modal> -->
+
 
 </h:body>
 </html>
