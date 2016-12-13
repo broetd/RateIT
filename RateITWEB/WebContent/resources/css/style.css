@@ -51,3 +51,15 @@
 	margin-left: 25px;
 	margin-top: 10px;
 }
+
+#post-container {
+    margin: auto;
+    width: 50%;
+    border: 3px solid;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.beschreibung {
+	font-weight: bold;
+}

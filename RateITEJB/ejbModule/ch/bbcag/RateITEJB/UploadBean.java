@@ -1,5 +1,6 @@
 package ch.bbcag.RateITEJB;
 
+import java.util.Collection;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
@@ -21,6 +22,12 @@ public class UploadBean implements UploadBeanLocal {
 	 */
 	public UploadBean() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<Post> getAllPost() {
+		return (Collection<Post>)em.createNamedQuery("Post.findAll").getResultList();
 	}
 
 	@Override

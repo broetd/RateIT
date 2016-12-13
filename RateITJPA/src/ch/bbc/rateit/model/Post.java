@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Named
 @Entity
 @NamedQueries({
-	@NamedQuery(name="Post.findAll", query="SELECT p FROM Post p"),
+	@NamedQuery(name="Post.findAll", query="SELECT p FROM Post p ORDER BY p DESC"),
     @NamedQuery(name="Post.findByAuthorAndTitel", query ="SELECT p FROM Post p WHERE p.author = :author AND p.titel = :titel")
 })
 

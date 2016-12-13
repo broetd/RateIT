@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.Collection;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -81,6 +82,15 @@ public class UploadController implements Serializable {
 			e.printStackTrace();
 		}
 		return "";
+	}
+	
+	public Collection<Post> getAllPost() {
+		try {
+			return uploadBean.getAllPost();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}	
 	}
 
 	public boolean isImageUploaded() {

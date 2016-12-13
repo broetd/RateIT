@@ -10,7 +10,7 @@
 
 <h:body>
 
-	<b:jumbotron>
+	<b:jumbotron rendered="#{not registerController.userLoggedIn}">
 	<b:container>
 		<h1>RateIT</h1>
 		<p>RateIT is a website, where users can upload pictures of self-made things and get or give feedback to other users</p>
@@ -19,9 +19,20 @@
 		</p>
 		</b:container>
 	</b:jumbotron>
-
-
-
-
+	
+	<ui:repeat rendered="#{registerController.userLoggedIn}" var="a" value="#{uploadController.getAllPost()}">
+		<div class="post-container" id="post-container">
+			<div class="post-content">
+				<h:outputText class="beschreibung" value="Title: "/>
+				<h:outputText value="#{a.getTitel()}"/> <br/>
+				<h:graphicImage id="image1" value="img/post/3.png" width="200" height="200"/> <br/>
+				<h:outputText class="beschreibung" value="Description: "/>
+				<h:outputText value="#{a.getText()}"/> <br/>
+				<h:outputText class="beschreibung" value="Author: "/>
+				<h:outputText value="#{a.getAuthor()}"/>
+				
+			</div>
+		</div>
+	</ui:repeat>
 </h:body>
 </html>
