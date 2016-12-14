@@ -22,7 +22,7 @@
 	</ui:insert>
 	<b:container>
 		<h:form styleClass="form-signin" prependId="false">
-			<h2 class="form-signin-heading">Register</h2>
+			<h2 class="form-signin-heading">Edit Profile</h2>
 			<h:outputLabel for="username" value="Username" />
 			<h:outputLabel for="required" value="*" style="color: red;" />
 			<b:inputText id="username" required="true" placeholder="Username"
@@ -46,22 +46,13 @@
 					<b:icon name="glyphicon-tags" />
 				</f:facet>
 			</b:inputText>
-			<h:outputLabel for="password" value="Password" />
-			<h:outputLabel for="required" value="*" style="color: red;" />
-			<b:inputText id="password" required="true" placeholder="Password"
-				type="password" value="#{userController.user.password}"
-				requiredMessage="Please enter a password">
-				<f:facet name="prepend">
-					<b:iconAwesome name="key" />
-				</f:facet>
-			</b:inputText>
-			<h:message for="password" style="color: red;" />
+			
 			<br />
 			<h:message for="username" style="color: red;" />
 
 			<b:commandButton look="primary btn-block" action="index.xhtml"
-				value="Register" icon="pencil" size="lg">
-				<f:actionListener binding="#{userController.save()}" />
+				value="Save" icon="floppy-disk" size="lg">
+				<f:actionListener binding="#{userController.update()}" />
 			</b:commandButton>
 		</h:form>
 	</b:container>

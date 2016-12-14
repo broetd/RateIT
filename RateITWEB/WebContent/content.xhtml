@@ -10,27 +10,47 @@
 
 <h:body>
 
-	<b:jumbotron rendered="#{not registerController.userLoggedIn}">
-	<b:container>
-		<h1>RateIT</h1>
-		<p>RateIT is a website, where users can upload pictures of self-made things and get or give feedback to other users</p>
-		<p>
-			<a class="btn btn-primary btn-lg" href="register.jsf">Register</a>
-		</p>
+	<b:jumbotron rendered="#{not userController.userLoggedIn}">
+		<b:container>
+			<h1>RateIT</h1>
+			<p>RateIT is a website, where users can upload pictures of
+				self-made things and get or give feedback to other users</p>
+			<p>
+				<a class="btn btn-primary btn-lg" href="register.jsf">Register</a>
+			</p>
 		</b:container>
 	</b:jumbotron>
-	
-	<ui:repeat rendered="#{registerController.userLoggedIn}" var="a" value="#{uploadController.getAllPost()}">
+
+	<ui:repeat rendered="#{userController.userLoggedIn}" var="a"
+		value="#{postController.allPosts}">
 		<div class="post-container" id="post-container">
 			<div class="post-content">
-				<h:outputText class="beschreibung" value="Title: "/>
-				<h:outputText value="#{a.getTitel()}"/> <br/>
-				<h:graphicImage id="image1" value="img/post/3.png" width="200" height="200"/> <br/>
-				<h:outputText class="beschreibung" value="Description: "/>
-				<h:outputText value="#{a.getText()}"/> <br/>
-				<h:outputText class="beschreibung" value="Author: "/>
-				<h:outputText value="#{a.getAuthor()}"/>
+				<h:outputText class="beschreibung" value="Title: " />
+				<h:outputText value="#{a.getTitel()}" />
+				<br />
+				<h:graphicImage id="image1" value="#{postController.getImgpath(a)}" width="200"
+					height="200" />
+					<br/>
+					<h:form>
+					<b:commandButton rendered="#{a.author eq userController.user.username}" value="delete" action="#{postController.deletePost(a.idPost)}" icon="trash" class="deleteButton" look="primary btn-block" size="lg"/>
+					</h:form>			
+				<br />
+				<h:outputText class="beschreibung" value="Description: " />
+				<h:outputText value="#{a.getText()}" />
+				<br />
+				<h:outputText class="beschreibung" value="Author: " />
+				<h:outputText value="#{a.getAuthor()}" />
+				<br />
+				<h:form>
+					<b:commandButton value="Like"
+						action="#{postController.ratePost(a.idPost)}" icon="thumbs-up"
+						class="likeButton">
+					</b:commandButton>
+					<h:outputText class="beschreibung" value="#{postController.post.rating}"/>
+				</h:form>
 				
+				
+
 			</div>
 		</div>
 	</ui:repeat>

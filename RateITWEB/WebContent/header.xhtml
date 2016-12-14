@@ -13,7 +13,7 @@
 	<b:navBar brand="RateIT" brandHref="index.jsf">
 		<b:navbarLinks>
 			<b:navLink value="Home" href="index.jsf"></b:navLink>
-			<b:navLink rendered="#{registerController.userLoggedIn}" value="Upload" href="upload.jsf"></b:navLink>
+			<b:navLink rendered="#{userController.userLoggedIn}" value="Upload" href="upload.jsf"></b:navLink>
 
 		</b:navbarLinks>
 		<form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs"
@@ -27,22 +27,22 @@
 		<b:navbarLinks pull="right">
 			<b:navLink value="    " href="#"></b:navLink>
 		</b:navbarLinks>
-		<b:navbarLinks rendered="#{not registerController.userLoggedIn}"
+		<b:navbarLinks rendered="#{not userController.userLoggedIn}"
 			pull="right" styleClass="hidden-xs">
 			<b:dropMenu value="Login" class="loginMenu">
 				<h:form>
 					<h:outputLabel class="username" for="username" value="Username" />
 					<b:inputText id="username" placeholder="Username"
-						class="usernameInput" value="#{registerController.user.username}">
+						class="usernameInput" value="#{userController.user.username}">
 					</b:inputText>
 					
 					<h:outputLabel class="password" for="password" value="Password" />
 					<b:inputText id="password" placeholder="Password" type="password"
-						class="passwordInput" value="#{registerController.user.password}">
+						class="passwordInput" value="#{userController.user.password}">
 					</b:inputText>
 					
 					<b:commandButton value="Login"
-						action="#{registerController.login()}" icon="log-in"
+						action="#{userController.login()}" icon="log-in"
 						class="loginButton" look="primary btn-block" size="lg" />
 						
 					<b:commandButton value="Register" action="register.xhtml"
@@ -50,15 +50,15 @@
 				</h:form>
 			</b:dropMenu>
 		</b:navbarLinks>
-		<b:navbarLinks rendered="#{registerController.userLoggedIn}"
+		<b:navbarLinks rendered="#{userController.userLoggedIn}"
 			pull="right" styleClass="hidden-xs">
-			<b:dropMenu value="#{registerController.user.getUsername()}"
+			<b:dropMenu value="#{userController.user.getUsername()}"
 				class="logoutMenu">
 				<h:form>
-					<b:commandButton value="Your Profile" action="#" icon="user"
-						class="profileButton" look="primary btn-block" size="lg" />
+					<b:commandButton value="Edit Profile" action="edit.xhtml" icon="user"
+						class="editButton" look="primary btn-block" size="lg" />
 					<b:commandButton value="Logout"
-						action="#{registerController.logout()}" icon="log-out"
+						action="#{userController.logout()}" icon="log-out"
 						class="logoutButton" look="primary btn-block" size="lg" />
 				</h:form>
 			</b:dropMenu>

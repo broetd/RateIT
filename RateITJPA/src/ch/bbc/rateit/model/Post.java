@@ -13,7 +13,9 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
 	@NamedQuery(name="Post.findAll", query="SELECT p FROM Post p ORDER BY p DESC"),
-    @NamedQuery(name="Post.findByAuthorAndTitel", query ="SELECT p FROM Post p WHERE p.author = :author AND p.titel = :titel")
+    @NamedQuery(name="Post.findByAuthorAndTitel", query ="SELECT p FROM Post p WHERE p.author = :author AND p.titel = :titel"),
+    @NamedQuery(name="Post.deletePost", query="DELETE FROM Post p WHERE p.idPost = :idPost "),
+    @NamedQuery(name="Post.ratePost", query="UPDATE Post p SET p.rating = :rating WHERE p.idPost = :postID")
 })
 
 
@@ -27,7 +29,7 @@ public class Post implements Serializable {
 
 	private String author;
 
-	private float rating;
+	private int rating;
 	
 	private String text;
 
@@ -59,11 +61,11 @@ public class Post implements Serializable {
 		this.author = author;
 	}
 
-	public float getRating() {
+	public int getRating() {
 		return rating;
 	}
 
-	public void setRating(float rating) {
+	public void setRating(int rating) {
 		this.rating = rating;
 	}
 
