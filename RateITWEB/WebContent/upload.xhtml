@@ -12,52 +12,44 @@
 	<ui:insert name="header">
 		<ui:include src="header.xhtml" />
 	</ui:insert>
+	<div class="post-container" id="post-container">
+		<div class="post-content">
+			<h:form class="login-form">
 
-	<h:form class="login-form">
+				<h:outputText class="beschreibung" value="Title"></h:outputText>
+				<h:outputLabel for="required" value="*" style="color: red;" />
 
-		<h:outputLabel for="required" value="*" style="color: red;" />
-		<b:inputText id="Titel" required="true" placeholder="Titel"
-			value="#{postController.post.titel}"
-			requiredMessage="Please enter a title"></b:inputText>
+				<b:inputText id="input" required="true" placeholder="Title"
+					value="#{postController.post.titel}"
+					requiredMessage="Please enter a title"></b:inputText>
 
-		<h:outputLabel for="required" value="*" style="color: red;" />
-		<b:inputText id="Text" required="true"
-			placeholder="Description (max 300 characters)"
-			value="#{postController.post.text}"
-			requiredMessage="Please enter a description"></b:inputText>
-
-
-
-		<p:fileUpload id="Upload"
-			fileUploadListener="#{postController.handleFileUpload}"
-			mode="advanced" dragDropSupport="true" sizeLimit="10000000000000"
-			required="true" requiredMessage="Please upload a picture"
-			allowTypes="/(\.|\/)(jpe?g|png)$/" />
-
-		<h:message for="Titel" style="color: red;" />
-		<br />
-		<h:message for="Text" style="color: red;" />
-		<br />
-
-		<b:commandButton look="primary btn-block" execute="@form"
-			action="index.xhtml" value="Post" icon="pencil" size="lg">
-			<f:actionListener binding="#{postController.createPost()}" />
-		</b:commandButton>
-		<!-- rendered="#{postController.imageUploaded}" -->
+				<h:outputText class="beschreibung" value="Description"></h:outputText>
+				<h:outputLabel for="required" value="*" style="color: red;" />
+				<b:inputText id="input2" required="true"
+					placeholder="Description (max 300 characters)"
+					value="#{postController.post.text}"
+					requiredMessage="Please enter a description"></b:inputText>
 
 
-	</h:form>
 
-	<!-- 	<b:modal rendered="#{not postController.imageUploaded}" id="amodal" title="Modal Example"
-		styleClass="modalPseudoClass">
-		<p>Modal body</p>
-		<f:facet name="footer">
-			<b:button value="close" dismiss="modal" onclick="return false;" />
-			<b:button value="Ok" look="primary" dismiss="modal"
-				onclick="return false;" />
-		</f:facet>
-	</b:modal> -->
+				<p:fileUpload id="Upload"
+					fileUploadListener="#{postController.handleFileUpload}"
+					mode="advanced" dragDropSupport="true" sizeLimit="10000000000000"
+					required="true" requiredMessage="Please upload a picture"
+					allowTypes="/(\.|\/)(jpe?g|png)$/" />
 
+				<h:message for="input" style="color: red;" />
+				<br />
+				<br />
+				<h:message for="input2" style="color: red;" />
+				<br />
 
+				<b:commandButton look="primary btn-block" execute="@form"
+					action="index.xhtml" value="Post" icon="pencil" size="lg">
+					<f:actionListener binding="#{postController.createPost()}" />
+				</b:commandButton>
+			</h:form>
+		</div>
+	</div>
 </h:body>
 </html>

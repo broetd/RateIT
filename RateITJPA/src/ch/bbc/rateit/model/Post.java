@@ -14,8 +14,8 @@ import javax.persistence.*;
 @NamedQueries({
 	@NamedQuery(name="Post.findAll", query="SELECT p FROM Post p ORDER BY p DESC"),
     @NamedQuery(name="Post.findByAuthorAndTitel", query ="SELECT p FROM Post p WHERE p.author = :author AND p.titel = :titel"),
-    @NamedQuery(name="Post.deletePost", query="DELETE FROM Post p WHERE p.idPost = :idPost "),
-    @NamedQuery(name="Post.ratePost", query="UPDATE Post p SET p.rating = :rating WHERE p.idPost = :postID")
+    @NamedQuery(name="Post.ratePost", query="UPDATE Post p SET p.rating = :rating WHERE p.idPost = :idPost"),
+	@NamedQuery(name="Post.getPostByID", query="SELECT p FROM Post p WHERE p.idPost = :idPost")
 })
 
 

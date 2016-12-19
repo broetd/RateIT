@@ -1,19 +1,23 @@
 package ch.bbc.rateit.controller;
 
 import java.io.Serializable;
+import java.util.Collection;
+
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import ch.bbc.rateit.model.Comment;
 import ch.bbc.rateit.model.Post;
 import ch.bbcag.RateITEJB.CommentBeanLocal;
+import ch.bbcag.RateITEJB.PostBeanLocal;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class CommentController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -21,16 +25,33 @@ public class CommentController implements Serializable {
 	@EJB
 	private CommentBeanLocal commentBean;
 
+	@EJB
+	private PostBeanLocal postBean;
+
 	@Inject
 	private Comment comment;
 
-	private Post originalPost;
+	private Collection<Comment> allCommentsOfPost;
 
-	private String commentText;
+	private Post originalPost;
+	
+	private int currentPostId;
+
+	
 
 	@Inject
 	private UserController registerController;
-	
+
+	@PostConstruct
+	public void init() {
+		try {
+			setAllCommentsOfPost(commentBean.getAllCommentsOfPost());
+		} catch (Exception e) {
+			e.printStackTrace();
+			setAllCommentsOfPost(null);
+		}
+	}
+
 	public Comment getComment() {
 		return comment;
 	}
@@ -39,19 +60,19 @@ public class CommentController implements Serializable {
 		this.comment = comment;
 	}
 
-	public String createComment() {
-			comment.setMessage(commentText);
-			comment.setPost_idPost(originalPost.getIdPost());
-			getComment().setAuthor(registerController.getUser().getUsername());
-			if (commentHasMessage()) {
-			commentBean.createComment(getComment());
-			return "";
+	public String createComment(int postId) {
+		originalPost = postBean.findById(postId);
+		comment.setPost_idPost(postId);
+		getComment().setAuthor(registerController.getUser().getUsername());
+		 if (commentHasMessage()) {
+		commentBean.createComment(getComment());
+		return "index.jsf";
 		} else {
-			FacesContext saveContext = FacesContext.getCurrentInstance();
-			saveContext.addMessage(null, new FacesMessage("Could not create comment. Please try again."));
-		}
-		return "";
-	}
+	 FacesContext saveContext = FacesContext.getCurrentInstance();
+	 saveContext.addMessage(null, new FacesMessage("Could not create comment. Please try again."));
+	 }
+	 return "";
+	 }
 
 	public boolean commentHasMessage() {
 		if (comment.getMessage() == null || comment.getMessage().equals("")) {
@@ -61,19 +82,27 @@ public class CommentController implements Serializable {
 		}
 	}
 
-	public String getCommentText() {
-		return commentText;
-	}
-
-	public void setCommentText(String commentText) {
-		this.commentText = commentText;
-	}
-
 	public Post getOriginalPost() {
 		return originalPost;
 	}
 
 	public void setOriginalPost(Post originalPost) {
 		this.originalPost = originalPost;
+	}
+
+	public Collection<Comment> getAllCommentsOfPost() {
+		return allCommentsOfPost;
+	}
+
+	public void setAllCommentsOfPost(Collection<Comment> allCommentsOfPost) {
+		this.allCommentsOfPost = allCommentsOfPost;
+	}
+
+	public int getCurrentPostId() {
+		return currentPostId;
+	}
+
+	public void setCurrentPostId(int currentPostId) {
+		this.currentPostId = currentPostId;
 	}
 }

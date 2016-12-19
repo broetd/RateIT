@@ -15,7 +15,9 @@ public interface PostBeanLocal {
 
 	void deletePost(int idPost);
 
-	void ratePost(int addRating, int idPost);
+	void ratePost(int idPost);
+
+	public Post findById(int postId);
 	 
 	
 

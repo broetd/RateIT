@@ -1,4 +1,4 @@
- package ch.bbc.rateit.model;
+package ch.bbc.rateit.model;
 
 import java.io.Serializable;
 import javax.persistence.Id;
@@ -7,17 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-
 /**
  * The persistent class for the customer database table.
  * 
  */
 @Named
 @Entity
-@NamedQueries({
-       @NamedQuery(name="Comment.findAll", query="SELECT c FROM Comment c"),
-       @NamedQuery(name="Comment.findByAuthorAnd", query ="SELECT u FROM User u WHERE u.username = :userName AND u.password = :userPW")
-})
+@NamedQueries({ @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c"),
+		@NamedQuery(name = "Comment.deleteComments", query = "DELETE FROM Comment c WHERE c.Post_idPost = :idPost "),
+		@NamedQuery(name = "Comment.findByAuthorAnd", query = "SELECT u FROM User u WHERE u.username = :userName AND u.password = :userPW"),
+		@NamedQuery(name = "Comment.findById", query = "SELECT c FROM Comment c WHERE c.idComment = :idComment") })
 public class Comment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -25,11 +24,12 @@ public class Comment implements Serializable {
 	private int idComment;
 	private String author;
 	private String message;
+
 	private int Post_idPost;
-	
+
 	public Comment() {
 	}
-	
+
 	public int getIdComment() {
 		return idComment;
 	}
@@ -61,8 +61,5 @@ public class Comment implements Serializable {
 	public void setPost_idPost(int post_idPost) {
 		Post_idPost = post_idPost;
 	}
-
-
-
 
 }

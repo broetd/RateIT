@@ -32,15 +32,20 @@ public class PostBean implements PostBeanLocal {
 
 	@Override
 	public void deletePost(int idPost) {
-		em.createNamedQuery("Post.deletePost")
-		.setParameter("idPost",idPost).executeUpdate();
+		em.createNamedQuery("Comment.deleteComments").setParameter("idPost", idPost).executeUpdate();
+		em.remove(em.find(Post.class, idPost));
 	}
 	
 	@Override
-	public void ratePost(int addrating, int idPost) {
+	public void ratePost(int idPost) {
+		Post tmpPost = (Post) em.createNamedQuery("Post.getPostByID")
+		.setParameter("idPost", idPost).getResultList().get(0);
+		
+		tmpPost.setRating(tmpPost.getRating() + 1);
+		
 		em.createNamedQuery("Post.ratePost")
-		.setParameter("rating",addrating)
-		.setParameter("postID", idPost).executeUpdate();
+		.setParameter("rating", tmpPost.getRating())
+		.setParameter("idPost", tmpPost.getIdPost()).executeUpdate();
 	}
 	
 	@Override
@@ -52,5 +57,10 @@ public class PostBean implements PostBeanLocal {
 		}
 		LOGGER.info("User " + post.getAuthor() + " has posted.");
 		return "";
+	}
+
+	@Override
+	public Post findById(int postId) {	
+		return (Post) em.createNamedQuery("Post.getPostByID").setParameter("idPost", postId).setMaxResults(1).getResultList().get(0);
 	}
 }

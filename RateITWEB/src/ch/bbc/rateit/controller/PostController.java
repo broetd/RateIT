@@ -10,21 +10,19 @@ import java.util.Collection;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.component.rating.Rating;
 import org.primefaces.event.FileUploadEvent;
 
 import ch.bbc.rateit.model.Post;
-import ch.bbc.rateit.model.User;
 import ch.bbcag.RateITEJB.PostBeanLocal;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class PostController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -38,14 +36,13 @@ public class PostController implements Serializable {
 	@Inject
 	private UserController registerController;
 
-	@Inject
-	private User user;
-
 	private Collection<Post> allPosts;
 
 	private boolean imageUploaded = false;
 
 	private String imgpath;
+	
+	private boolean isLiked = false;
 
 	@PostConstruct
 	public void init() {
@@ -58,16 +55,8 @@ public class PostController implements Serializable {
 	}
 	
 	public String ratePost(int idPost) {
-		post.setRating(addRating());
-		postBean.ratePost(addRating(), idPost);
-		return "";
-	}
-	
-	public int addRating() {
-		int amountLikes = 0;
-		amountLikes = post.getRating() + 1;
-		return amountLikes;
-		
+		postBean.ratePost(idPost);
+		return "index.jsf";
 	}
 
 	public Post getPost() {
@@ -81,7 +70,7 @@ public class PostController implements Serializable {
 	public String deletePost(int idPost) {
 		postBean.deletePost(idPost);
 
-		return "";
+		return "index.jsf";
 	}
 
 	
@@ -150,6 +139,14 @@ public class PostController implements Serializable {
 
 	public void setAllPosts(Collection<Post> allPosts) {
 		this.allPosts = allPosts;
+	}
+
+	public boolean isLiked() {
+		return isLiked;
+	}
+
+	public void setLiked(boolean isLiked) {
+		this.isLiked = isLiked;
 	}
 
 }

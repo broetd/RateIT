@@ -32,7 +32,7 @@ CREATE TABLE `comment` (
   PRIMARY KEY (`idComment`),
   KEY `fk_Comment_Post1_idx` (`Post_idPost`),
   CONSTRAINT `fk_Comment_Post1` FOREIGN KEY (`Post_idPost`) REFERENCES `post` (`idPost`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
+INSERT INTO `comment` VALUES (56,'orewa','plsplsplspls',1);
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +62,7 @@ CREATE TABLE `post` (
   PRIMARY KEY (`idPost`),
   KEY `fk_Post_User_idx` (`User_idUser`),
   CONSTRAINT `fk_Post_User` FOREIGN KEY (`User_idUser`) REFERENCES `user` (`idUser`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +71,7 @@ CREATE TABLE `post` (
 
 LOCK TABLES `post` WRITE;
 /*!40000 ALTER TABLE `post` DISABLE KEYS */;
-INSERT INTO `post` VALUES (42,'hoi',0,NULL,'test1','I want to share my experience with this Exception. My JSF 2.2 application worked fine with WildFly 8.0, but one time, when I started server'),(43,'hoi',0,NULL,'test2','I want to share my experience with this Exception. My JSF 2.2 application worked fine with WildFly 8.0, but one time, when I started server');
+INSERT INTO `post` VALUES (1,'hoi',3,NULL,'Test 1','Hoi i will try to like this picture :D'),(3,'orewa',3,NULL,'Test 3','lkhshghk');
 /*!40000 ALTER TABLE `post` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +90,7 @@ CREATE TABLE `user` (
   `surname` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idUser`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +99,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (45,'orewa','chinchin','','hoi'),(46,'hoi','1234','hoi','hoi');
+INSERT INTO `user` VALUES (45,'orewa','chinchin','',''),(46,'hoi','1234','Anele','hoi'),(47,'deSimon','dudickluegnödmispasswortaah','Simon','Schwarzkopf'),(49,'finalTryEdit','123456','hoi','gaggi');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -111,4 +112,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-13 11:56:35
+-- Dump completed on 2016-12-19 19:02:17

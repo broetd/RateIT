@@ -25,31 +25,45 @@
 		value="#{postController.allPosts}">
 		<div class="post-container" id="post-container">
 			<div class="post-content">
-				<h:outputText class="beschreibung" value="Title: " />
+				<h:outputText class="beschreibung" value="#{a.getAuthor()}" />
+				<br /> <br />
 				<h:outputText value="#{a.getTitel()}" />
 				<br />
-				<h:graphicImage id="image1" value="#{postController.getImgpath(a)}" width="200"
-					height="200" />
-					<br/>
-					<h:form>
-					<b:commandButton rendered="#{a.author eq userController.user.username}" value="delete" action="#{postController.deletePost(a.idPost)}" icon="trash" class="deleteButton" look="primary btn-block" size="lg"/>
-					</h:form>			
-				<br />
-				<h:outputText class="beschreibung" value="Description: " />
 				<h:outputText value="#{a.getText()}" />
 				<br />
-				<h:outputText class="beschreibung" value="Author: " />
-				<h:outputText value="#{a.getAuthor()}" />
+				<h:graphicImage id="image" value="#{postController.getImgpath(a)}"
+					width="200" height="200" />
 				<br />
 				<h:form>
-					<b:commandButton value="Like"
-						action="#{postController.ratePost(a.idPost)}" icon="thumbs-up"
-						class="likeButton">
-					</b:commandButton>
-					<h:outputText class="beschreibung" value="#{postController.post.rating}"/>
+
 				</h:form>
-				
-				
+				<br />
+				<h:form>
+					<b:commandButton
+						rendered="#{a.author ne userController.user.username}"
+						value="Like" action="#{postController.ratePost(a.idPost)}"
+						icon="thumbs-up" class="likeButton">
+					</b:commandButton>
+					<h:outputText class="beschreibung" value="Likes: " />
+					<h:outputText class="beschreibung" value="#{a.getRating()}" />
+					<br />
+					<br />
+					<b:inputText id="comment" required="false" placeholder="Comment"
+						value="#{commentController.comment.message}">
+					</b:inputText>
+					<b:commandButton value="Submit" action="#{commentController.createComment(a.idPost)}">
+					</b:commandButton>
+					<b:commandButton value="Comments" action="comments.xhtml" />
+					<br />
+					<br />
+					<b:commandButton
+						rendered="#{a.author eq userController.user.username}"
+						value="delete" action="#{postController.deletePost(a.idPost)}"
+						icon="trash" class="deleteButton" look="primary btn-block"
+						size="lg" />
+				</h:form>
+
+
 
 			</div>
 		</div>

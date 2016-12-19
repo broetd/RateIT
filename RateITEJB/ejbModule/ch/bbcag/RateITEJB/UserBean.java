@@ -7,8 +7,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.glassfish.api.admin.ExecuteOn;
-
 import ch.bbc.rateit.model.User;
 
 @Stateless

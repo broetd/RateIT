@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+	<ui:insert name="header">
+		<ui:include src="header.xhtml" />
+	</ui:insert>
+	<ui:repeat var="a" value="#{commentController.allCommentsOfPost}">
+		<div class="post-container" id="post-container">
+			<div class="post-content">
+				<h:form>
+					<h:outputText class="beschreibung" value="Author: " />
+					<h:outputText class="beschreibung" value="#{a.getAuthor()}" />
+
+					<br />
+					<h:outputText value="#{a.getPost_idPost()}" />
+					<br />
+					<h:outputText value="#{a.getMessage()}" />
+					<br />
+					<b:commandButton value="Back" action="index.xhtml"></b:commandButton>
+				</h:form>
+
+
+
+			</div>
+		</div>
+	</ui:repeat>
+</h:body>
+</html>

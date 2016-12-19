@@ -20,41 +20,43 @@
 	<ui:insert name="header">
 		<ui:include src="header.xhtml" />
 	</ui:insert>
-	<b:container>
-		<h:form styleClass="form-signin" prependId="false">
-			<h2 class="form-signin-heading">Edit Profile</h2>
-			<h:outputLabel for="username" value="Username" />
-			<h:outputLabel for="required" value="*" style="color: red;" />
-			<b:inputText id="username" required="true" placeholder="Username"
-				value="#{userController.user.username}"
-				requiredMessage="Please enter a username">
-				<f:facet name="prepend">
-					<b:icon name="user" />
-				</f:facet>
-			</b:inputText>
-			<h:outputLabel for="name" value="Name" />
-			<b:inputText id="name" required="false" placeholder="Name"
-				value="#{userController.user.name}">
-				<f:facet name="prepend">
-					<b:icon name="glyphicon-tag" />
-				</f:facet>
-			</b:inputText>
-			<h:outputLabel for="surname" value="Surname" />
-			<b:inputText id="surname" required="false" placeholder="Surname"
-				value="#{userController.user.surname}">
-				<f:facet name="prepend">
-					<b:icon name="glyphicon-tags" />
-				</f:facet>
-			</b:inputText>
-			
-			<br />
-			<h:message for="username" style="color: red;" />
+	<div class="post-container" id="post-container">
+		<div class="post-content">
+			<h:form styleClass="form-signin" prependId="false">
+				<h2 class="form-signin-heading">Edit Profile</h2>
+				<h:outputLabel for="username" value="Username" />
+				<h:outputLabel for="required" value="*" style="color: red;" />
+				<b:inputText id="username" required="true" placeholder="Username"
+					value="#{userController.user.username}"
+					requiredMessage="Please enter a username">
+					<f:facet name="prepend">
+						<b:icon name="user" />
+					</f:facet>
+				</b:inputText>
+				<h:outputLabel for="name" value="Name" />
+				<b:inputText id="name" required="false" placeholder="Name"
+					value="#{userController.user.name}">
+					<f:facet name="prepend">
+						<b:icon name="glyphicon-tag" />
+					</f:facet>
+				</b:inputText>
+				<h:outputLabel for="surname" value="Surname" />
+				<b:inputText id="surname" required="false" placeholder="Surname"
+					value="#{userController.user.surname}">
+					<f:facet name="prepend">
+						<b:icon name="glyphicon-tags" />
+					</f:facet>
+				</b:inputText>
 
-			<b:commandButton look="primary btn-block" action="index.xhtml"
-				value="Save" icon="floppy-disk" size="lg">
-				<f:actionListener binding="#{userController.update()}" />
-			</b:commandButton>
-		</h:form>
-	</b:container>
+				<br />
+				<h:message for="username" style="color: red;" />
+
+				<b:commandButton look="primary btn-block" action="index.xhtml"
+					value="Save" icon="floppy-disk" size="lg">
+					<f:actionListener binding="#{userController.update()}" />
+				</b:commandButton>
+			</h:form>
+		</div>
+	</div>
 </h:body>
 </html>
